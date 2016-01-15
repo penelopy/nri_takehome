@@ -13,25 +13,16 @@ can track your thought process."""
 
 #Import CSV to Database (possibly use cache or in-memory db)? Use classes
 
-class Question:
-    def __init__(self, strand_id, strand_name, standard_id, standard_name, question_id, difficulty):
-        self.strand_id = strand_id 
-        self.strand_name = strand_name
-        self.standard_id = standard_id 
-        self.standard_name = standard_name
-        self.question_id = question_id 
-        self.difficulty = difficulty
 
-    def select_record_by_strand(self):
-        pass
-
-    def select_record_by_name(self):
-        pass
 
 #Ask for user input (input needs to be integer > 0)
 num_questions = input("How many questions would you like?")
 
 #Select questions to display (equal number of strands, equal number of standards)
+def select_record_by_strand(self):
+    pass
 
+def select_record_by_name(self):
+    pass
 #Display a list of question IDs
 
