@@ -1,6 +1,6 @@
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import create_engine
-from sqlalchemy import Column, Integer, String, Float, DateTime
+from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import sessionmaker
 
 
@@ -9,21 +9,23 @@ Session = None
 
 Base = declarative_base()
 
-class Question(Base):
+class Question(Base): #TODO convert fields to DateTime, Integer, Float
     __tablename__ = "questions"
     id = Column(Integer, primary_key = True, nullable=False)
-    strand_id = Column(Integer)
+    question_id = Column(String(5))
+    strand_id = Column(String(5))
     strand_name = Column(String(32)) 
-    standard_id = Column(Integer)
+    standard_id = Column(String(5))
     standard_name = Column(String(32)) 
-    difficulty = Column(Float)
+    difficulty = Column(String(5))
 
-class Students(Base):
+class Students(Base): #TODO convert fields to DateTime, Integer
     __tablename__ = "students"
     id = Column(Integer, primary_key = True, nullable=False)
-    question_id = Column(Integer)
-    assigned_hours_ago = Column(DateTime)
-    answered_hours_ago = Column(DateTime)
+    student_id = Column(String(5))
+    question_id = Column(String(5))
+    assigned_hours_ago = Column(String(5))
+    answered_hours_ago = Column(String(5))
 
 def connect(): 
     global ENGINE

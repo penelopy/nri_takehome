@@ -1,17 +1,6 @@
-"""* The program should prompt the user for the number of questions to put in the quiz. 
-Any integer value greater than 0 is acceptable.
-* The expected output is to display a list of question_ids
-* Use each strand as close as possible to an equal number of times. (e.g. 
-    There are two strands, so if the user asks for a 3 question quiz, it's okay 
-    to choose one strand twice and the other once.)
-* Use each standard as close as possible to an equal number of times.
-* Duplicating questions in the quiz is OKAY!
-* Not completing the basic requirements IS NOT FAILURE.  We'd rather see a 
-beautiful attempt than a complete attempt.
-* Please use git to track progress. E.g. progressively commit changes so we 
-can track your thought process."""
 
 import datetime
+import model
 
 #Import CSV to Database (possibly use cache or in-memory db)? Use classes
 
@@ -24,13 +13,29 @@ num_questions = input("How many questions would you like?")
 #Determine current time and record in database
 time = datetime.now()
 
-#Retrieve data about student by querying db 
+
+def select_unanswered_question():
+    #Retrieve data about student by querying db 
+    assigned_questions = {1:0, 2:0, 3:0, 4:0, 5:0, 6:0, 7:0, 8:0, 9:0, 10:0, 11:0, 12:0}
+    new_questions_for_user = []
+    user_data = model.db_session.query(model.Student).filter_by(student_id=user_id).all()
+    for question in user_data.question_id: 
+        assigned_questions[question] = assigned_questions(question) + 1 
+    for key, value in assigned_questions: 
+        if value == 0: 
+            new_question = assigned_questions[key]
+            new_questions_for_user.append(new_question)
+            num_questions += 1
+    return new_questions_for_user
+
 
 #Select questions to display (equal number of strands, equal number of standards)
 def select_record_by_strand(self):
-    pass
+    possible_questions = select_unanswered_question()
+    #TODO determine type of questions and select new standard/strand
 
 def select_record_by_name(self):
     pass
+
 #Display a list of question IDs
 
